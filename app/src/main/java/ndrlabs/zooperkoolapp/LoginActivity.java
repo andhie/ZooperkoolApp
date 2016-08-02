@@ -1,10 +1,15 @@
 package ndrlabs.zooperkoolapp;
 
+import android.content.Context;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
+import android.util.TypedValue;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
@@ -34,6 +39,11 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         findViews();
+
+
+        Drawable drawable = tintIcon(pwVisible.getContext(), pwVisible.getDrawable());
+        pwVisible.setImageDrawable(drawable);
+
     }
 
     private void findViews() {
@@ -50,13 +60,13 @@ public class LoginActivity extends AppCompatActivity {
                     case MotionEvent.ACTION_DOWN:
                         //SHOW PASSWORD HERE
                         password.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
-                        return true;
+                        return false; // false to let default touch behavior take effect
 
                     case MotionEvent.ACTION_CANCEL:
                     case MotionEvent.ACTION_UP:
                         //HIDE PASSWORD HERE
                         password.setTransformationMethod(PasswordTransformationMethod.getInstance());
-                        return true;
+                        return false; // false to let default touch behavior take effect
 
                     default:
                         return false;
@@ -77,5 +87,15 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
+    private static Drawable tintIcon(Context context, Drawable drawable) {
+        TypedValue outValue = new TypedValue();
+        context.getTheme().resolveAttribute(R.attr.colorControlNormal, outValue, true);
+
+        Drawable mutated = drawable.mutate();
+        int color = ContextCompat.getColor(context, outValue.resourceId);
+        mutated.setColorFilter(color, PorterDuff.Mode.SRC_IN);
+
+        return mutated;
+    }
 
 }
