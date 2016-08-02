@@ -15,7 +15,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.TextView;
 import android.widget.Toast;
 
 public class LoginActivity extends AppCompatActivity {
@@ -24,7 +23,7 @@ public class LoginActivity extends AppCompatActivity {
     private EditText password;
     private ImageButton pwVisible;
     private Button login;
-    private TextView forgotPw;
+    private Button forgotPw;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -51,7 +50,7 @@ public class LoginActivity extends AppCompatActivity {
         password = (EditText) findViewById(R.id.password);
         pwVisible = (ImageButton) findViewById(R.id.pw_visible);
         login = (Button) findViewById(R.id.login);
-        forgotPw = (TextView) findViewById(R.id.forgot_pw);
+        forgotPw = (Button) findViewById(R.id.forgot_pw);
 
         pwVisible.setOnTouchListener(new View.OnTouchListener() {
             @Override

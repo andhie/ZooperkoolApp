@@ -54,8 +54,9 @@
             android:layout_marginTop="48dp"
             android:text="Login" />
 
-        <TextView
+        <Button
             android:id="@+id/forgot_pw"
+            style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
